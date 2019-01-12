@@ -1,24 +1,14 @@
+var app = require('./lib/Express');
 var createError = require('http-errors');
 var indexRouter = require('./routes/index');
-var app = require('./lib/Express');
-var mongoose = require('mongoose');
+require('./config/db');
 var cors = require('cors');
-
-require('dotenv').config({path: './enviroment.env'});
 
 var corsOptions = {
   origin: 'http://localhost:4200',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }
 app.use(cors(corsOptions));
-
-//Set up default mongoose connection
-const mongoDB = (process.env.DB_HOST + process.env.DB_NAME) || 'mongodb://127.0.0.1:27017/mydb';
-mongoose.connect(mongoDB).then(() => {
-  console.log("Connected to Database");
-}).catch((err) => {
-  console.log("Not Connected to Database ERROR! ", err);
-});
 
 app.use('/', indexRouter);
 

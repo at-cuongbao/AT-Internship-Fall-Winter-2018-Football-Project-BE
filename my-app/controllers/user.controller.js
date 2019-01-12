@@ -1,42 +1,41 @@
-const User = require('../models/user.model');
+const UserService = require('./../services/user.service');
 
 module.exports = {
   index: (req, res) => {
-    User.selectAllUser((err, callback) => {
+    UserService.selectAllUser((err, callback) => {
       if (err) throw err;
       res.json(callback);
     })
   },
   new: (req, res) => {
-    User.createUser(req.body, (err, callback) => {
+    UserService.createUser(req.body, (err, callback) => {
       if (err) throw err;
       res.json(callback);
     });
   },
   show: (req, res) => {
-    const id = req.params.userId;
-    User.getUser(id, (err, callback) => {
+    const id = req.params.id;
+    UserService.getUser(id, (err, callback) => {
       if (err) throw err;
       res.json(callback);
     })
   },
   update: (req, res) => {
-    const id = req.params.userId;
-    User.updateUser(id, req.body, (err, callback) => {
+    const id = req.params.id;
+    UserService.updateUser(id, req.body, (err, callback) => {
       if (err) throw err;
       res.json(callback);
     })
   },
   delete: (req, res) => {
-    const id = req.params.userId;
-    User.deleteUser(id, (err, callback) => {
+    UserService.deleteUser(req.params.id, (err, callback) => {
       if (err) throw err;
       res.json(callback);
     })
   },
   updateAge: (req, res) => {
-    const id = req.params.userId;
-    User.updateAge(id, req.body.age, (err, callback) => {
+    const id = req.params.id;
+    UserService.updateAge(id, req.body.age, (err, callback) => {
       if (err) throw err;
       res.json(callback);
     });
