@@ -1,43 +1,39 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-  username: {
+const matchSchema = mongoose.Schema({
+  num: {
     type: String,
     required: false
   },
-  email: {
+  play_at: {
     type: String,
     required: false
   },
-  password: {
+  knockout: {
     type: String,
     required: false
   },
-  accsessToken: {
-    type: String,
-    required: false
-  },
-  role: {
-    type: String,
-    required: false
-  },
-  lastLogin: {
-    type: String,
-    required: false
-  },
-  created: {
-    type: String,
-    required: false
-  },
-  name: {
-    type: String,
-    required: false
-  },
-  age: {
+  home: {
     type: Number,
     required: false
   },
+  winner: {
+    type: String,
+    required: false
+  },
+  pos: {
+    type: String,
+    required: false
+  },
+  round_id: {
+    type: String,
+    required: true
+  },
+  competiton_id: {
+    type: String,
+    required: true
+  }
 
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Match', matchSchema);
