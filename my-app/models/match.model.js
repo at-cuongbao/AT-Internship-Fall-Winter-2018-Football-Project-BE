@@ -32,6 +32,10 @@ const matchSchema = mongoose.Schema({
   competiton_id: {
     type: String,
     required: true
+  },
+  start_at: {
+    type: Date,
+    required: false
   }
 
 });
