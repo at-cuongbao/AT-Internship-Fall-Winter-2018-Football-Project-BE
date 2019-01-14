@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 
 const groupSchema = mongoose.Schema({
-  title: {
+  name: {
     type: String,
-    required: false
-  },
-  num: {
-    type: Number,
-    required: false
+    required: true
   }
 
 });

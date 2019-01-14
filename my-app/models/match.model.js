@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const matchSchema = mongoose.Schema({
+const matchSchema = new Schema({
   num: {
     type: String,
     required: false
@@ -21,16 +22,24 @@ const matchSchema = mongoose.Schema({
     type: String,
     required: false
   },
+  score: {
+    type: String,
+    required: false
+  },
   pos: {
     type: String,
     required: false
   },
   round_id: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true
   },
-  competiton_id: {
-    type: String,
+  tournament_id: {
+    type: Schema.Types.ObjectId,
+    required: true
+  },
+  tournament_team_id: {
+    type: Schema.Types.ObjectId,
     required: true
   },
   start_at: {
@@ -38,6 +47,6 @@ const matchSchema = mongoose.Schema({
     required: false
   }
 
-});
+}, {strict: false});
 
 module.exports = mongoose.model('Match', matchSchema);

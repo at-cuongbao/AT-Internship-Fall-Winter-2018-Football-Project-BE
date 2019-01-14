@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const roundSchema = mongoose.Schema({
-  title: {
+  name: {
     type: String,
     required: false
   },
@@ -11,10 +11,6 @@ const roundSchema = mongoose.Schema({
   },
   end_at: {
     type: Date,
-    required: false
-  },
-  num: {
-    type: Number,
     required: false
   }
 

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const competitionSchema = mongoose.Schema({
+const tournamentSchema = mongoose.Schema({
   name: {
     type: String,
-    required: false
+    required: true
   },
   start_at: {
     type: Date,
@@ -24,4 +24,4 @@ const competitionSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Competition', competitionSchema);
+module.exports = mongoose.model('Tournament', tournamentSchema);
