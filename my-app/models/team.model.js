@@ -13,7 +13,6 @@ const teamSchema = mongoose.Schema({
     type: String,
     required: false
   }
-
 });
 
 module.exports = mongoose.model('Team', teamSchema);

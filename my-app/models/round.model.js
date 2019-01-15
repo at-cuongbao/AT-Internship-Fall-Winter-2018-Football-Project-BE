@@ -13,7 +13,6 @@ const roundSchema = mongoose.Schema({
     type: Date,
     required: false
   }
-
 });
 
 module.exports = mongoose.model('Round', roundSchema);

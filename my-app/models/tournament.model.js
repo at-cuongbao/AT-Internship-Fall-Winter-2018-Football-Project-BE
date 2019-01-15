@@ -13,7 +13,7 @@ const tournamentSchema = mongoose.Schema({
     type: Date,
     required: false
   },
-  numGroup: {
+  groupNumber: {
     type: Number,
     required: false
   },
@@ -21,7 +21,6 @@ const tournamentSchema = mongoose.Schema({
     type: String,
     required: false
   }
-
 });
 
 module.exports = mongoose.model('Tournament', tournamentSchema);

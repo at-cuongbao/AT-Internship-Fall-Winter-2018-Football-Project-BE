@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-const userRoute = require('./user.route');
-const matchRoute = require('./schedule.route');
-const scheduleRoute = require('./schedule.route');
-const sessionCrl = require('./../controllers/session.controller');
+const userRouter = require('./user.route');
+const matchRouter = require('./schedule.route');
+const scheduleRouter = require('./schedule.route');
+const apiRouter = require('./api.route');
+
+const utilities = require('../utilities/index');
 
 router.get('/', (req, res) => {
-  res.send("Hello. This is ./");
+  res.redirect('/schedules');
 });
 
-router.post('/sessions', sessionCrl.login);
-router.use('/users', userRoute);
-router.use('/matchs', matchRoute);
-router.use('/schedules', scheduleRoute);
+router.use('/users', utilities.verifyToken, userRouter);
+router.use('/matchs', matchRouter);
+router.use('/schedules', scheduleRouter);
+router.use('/api', apiRouter);
 
 module.exports = router;

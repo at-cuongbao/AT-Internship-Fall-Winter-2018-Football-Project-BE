@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const matchSchema = new Schema({
+const matchSchema = mongoose.Schema({
   num: {
     type: String,
     required: false
@@ -46,7 +45,6 @@ const matchSchema = new Schema({
     type: Date,
     required: false
   }
-
 }, {strict: false});
 
 module.exports = mongoose.model('Match', matchSchema);

@@ -1,43 +1,36 @@
-const ScheduleService = require('./../services/schedule.service');
+const scheduleService = require('../services/schedule.service');
 
 module.exports = {
   index: (req, res) => {
-    ScheduleService.selectAll((err, callback) => {
+    scheduleService.selectAll((err, callback) => {
+      if (err) throw err;
+      res.json(callback);
+    });
+  },
+  new: (req, res) => {
+    scheduleService.createSchedule(req.body, (err, callback) => {
+      if (err) throw err;
+      res.json(callback);
+    });
+  },
+  show: (req, res) => {
+    const id = res.params.id;
+    scheduleService.getSchedule(id, (err, callback) => {
       if (err) throw err;
       res.json(callback);
     })
   },
-  new: (req, res) => {
-    ScheduleService.createMatch(req.body, (err, callback) => {
+  update: (req, res) => {
+    const id = req.params.id;
+    scheduleService.updateSchedule(id, req.body, (err, callback) => {
       if (err) throw err;
       res.json(callback);
-    });
+    })
+  },
+  delete: (req, res) => {
+    scheduleService.deleteSchedule(req.params.id, (err, callback) => {
+      if (err) throw err;
+      res.json(callback);
+    })
   }
-  // show: (req, res) => {
-  //   const id = req.params.id;
-  //   UserService.getUser(id, (err, callback) => {
-  //     if (err) throw err;
-  //     res.json(callback);
-  //   })
-  // },
-  // update: (req, res) => {
-  //   const id = req.params.id;
-  //   UserService.updateUser(id, req.body, (err, callback) => {
-  //     if (err) throw err;
-  //     res.json(callback);
-  //   })
-  // },
-  // delete: (req, res) => {
-  //   UserService.deleteUser(req.params.id, (err, callback) => {
-  //     if (err) throw err;
-  //     res.json(callback);
-  //   })
-  // },
-  // updateAge: (req, res) => {
-  //   const id = req.params.id;
-  //   UserService.updateAge(id, req.body.age, (err, callback) => {
-  //     if (err) throw err;
-  //     res.json(callback);
-  //   });
-  // }
 }
