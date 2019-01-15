@@ -1,16 +1,22 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const scheduleSchema = mongoose.Schema({
-
-  team_id: {
-    type: Schema.Types.ObjectId,
-    required: false
+const scheduleSchema = new Schema({
+  tournament: {
+    type: Number,
   },
-  group_id: {
-    type: Schema.Types.ObjectId,
-    required: false
+  group: {
+    type: String,
+  },
+  firstTeam: {
+    type: String,
+  },
+  secondTeam: {
+    type: String,
+  },
+  matchDate: {
+    type: Date
   }
-
 });
 
-module.exports = scheduleSchema;
+module.exports = mongoose.model('Schedule', scheduleSchema);

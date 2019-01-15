@@ -1,20 +1,35 @@
-const Match = require('./../models/match.model');
+const Schedule = require('./../models/schedule.model');
+const utilities = require('../utilities/generateMatchPair');
 
 module.exports = {
   selectAll: (callback) => {
-    Match.find(callback);
+    Schedule.find(callback);
   },
-  createMatch: (body, callback) => {
-    const match = new Match(body);
-    match.save(callback);
+  createSchedule: (body, callback) => {
+    let tournamentId = body.tournamentId;
+    body.data.map(group => {
+      let groupName = group.name;
+      utilities.getUniquePairArray(group.teams, false).map(pair => {
+        pair.map(item => {
+          let schedule = new Schedule({
+            tournament: tournamentId,
+            group: groupName,
+            firstTeam: item[0],
+            secondTeam: item[1],
+            matchDate: item[2]
+          });
+          schedule.save(callback);
+        });
+      });
+    });
   },
-  getMatch: (id, callback) => {
-    Match.find({ _id: id }, callback);
+  getSchedule: (id, callback) => {
+    Schedule.find({ _id: id }, callback);
   },
-  updateMatch: (id, body, callback) => {
-    Match.findByIdAndUpdate(id, body, callback);
+  updateSchedule: (id, body, callback) => {
+    Schedule.findByIdAndUpdate(id, body, callback);
   },
-  deleteMatch: (id, callback) => {
-    Match.deleteOne({ _id: id }, callback);
+  deleteSchedule: (id, callback) => {
+    Schedule.deleteOne({ _id: id }, callback);
   }
 }
