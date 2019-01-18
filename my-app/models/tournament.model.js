@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const tournamentSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     required: false
@@ -14,7 +13,7 @@ const tournamentSchema = mongoose.Schema({
     type: Date,
     required: false
   },
-  groupNumber: {
+  group_number: {
     type: Number,
     required: false
   },

@@ -10,7 +10,7 @@ var UserSchema = mongoose.Schema({
   password: {
     type: String
   },
-  isAdmin: {
+  is_admin: {
     type: Boolean
   },
   age: {

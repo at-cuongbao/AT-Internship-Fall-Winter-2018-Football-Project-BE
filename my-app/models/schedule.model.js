@@ -1,23 +1,20 @@
 const mongoose = require('mongoose');
 
 const scheduleSchema = mongoose.Schema({
-  tournament: {
-    type: mongoose.Schema.Types.ObjectId,
+  tournament_id: {
+    type: mongoose.Schema.ObjectId,
     ref: 'Tournament'
   },
-  group: {
+  group_id: {
     type: String
   },
-  firstTeam: {
-    type: mongoose.Schema.Types.ObjectId,
+  first_team_id: {
+    type: mongoose.Schema.ObjectId,
     ref: 'Team'
   },
-  secondTeam: {
-    type: mongoose.Schema.Types.ObjectId,
+  second_team_id: {
+    type: mongoose.Schema.ObjectId,
     ref: 'Team'
-  },
-  matchDate: {
-    type: Date
   }
 });
 

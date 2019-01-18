@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const matchSchema = mongoose.Schema({
-  num: {
-    type: String,
-    required: false
-  },
   play_at: {
     type: String,
     required: false
@@ -13,33 +9,21 @@ const matchSchema = mongoose.Schema({
     type: String,
     required: false
   },
-  home: {
-    type: Number,
-    required: false
-  },
   winner: {
     type: String,
     required: false
   },
-  score: {
-    type: String,
-    required: false
-  },
-  pos: {
-    type: String,
-    required: false
-  },
-  round_id: {
+  score_id: {
     type: Schema.Types.ObjectId,
-    required: true
+    ref: 'Score'
   },
   tournament_id: {
     type: Schema.Types.ObjectId,
-    required: true
+    ref: 'Tournament'
   },
-  tournament_team_id: {
+  prediction_id: {
     type: Schema.Types.ObjectId,
-    required: true
+    ref: 'Prediction'
   },
   start_at: {
     type: Date,

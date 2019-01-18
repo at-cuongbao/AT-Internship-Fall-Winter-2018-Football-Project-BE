@@ -10,7 +10,7 @@ module.exports = {
   new: (req, res) => {
     tournamentService.createTournament(req, (err, callback) => {
       if (err) throw err;
-      res.redirect('/schedules/new?data=' + JSON.stringify(callback));
+      res.redirect('/api/schedules/new?data=' + JSON.stringify(callback));
     });
   },
   show: (req, res) => {

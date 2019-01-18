@@ -14,8 +14,15 @@ module.exports = {
     });
   },
   show: (req, res) => {
-    const id = res.params.id;
+    const id = req.params.id;
     scheduleService.getSchedule(id, (err, callback) => {
+      if (err) throw err;
+      res.json(callback);
+    })
+  },
+  showByTournament: (req, res) => {
+    const tournamentId = req.params.tournamentId;
+    scheduleService.getScheduleByTournament(tournamentId, (err, callback) => {
       if (err) throw err;
       res.json(callback);
     })
