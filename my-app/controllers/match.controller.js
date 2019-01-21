@@ -20,6 +20,13 @@ module.exports = {
       res.json(callback);
     });
   },
+  showByTournament: (req, res) => {
+    const tournamentId = req.params.tournamentId;
+    matchService.getMatchByTournament(tournamentId, (err, callback) => {
+      if (err) throw err;
+      res.json(callback);
+    })
+  },
   update: (req, res) => {
     const id = req.params.id;
     matchService.updateMatch(id, req.body, (err, callback) => {

@@ -16,14 +16,5 @@ module.exports = {
   },
   deleteUser: (id, callback) => {
     User.deleteOne({_id: id}, callback);
-  },
-  // newAccessToken: (id, token, callback) => {
-  //   User.findByIdAndUpdate(id, token, callback);
-  // },
-  // updateAge: (id, age, callback) => {
-  //   User.findByIdAndUpdate(id, {age: age}, callback);
-  // },
-  // isExistUser: (email) => {
-  //   !!User.find(email);
-  // }
+  }
 }

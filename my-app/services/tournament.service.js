@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Tournament = require('../models/tournament.model');
 const Team = require('../models/team.model');
+const Tournament_team = require('../models/tournament_team.model');
 
 const utilities = require('../utilities/index');
 
@@ -16,29 +17,42 @@ module.exports = {
     let groups = [];
     let j = 0;
 
-    let teamIds = []
-    let tournamentId;
     let schedules = [];
     
+    let teamInstance = {};
+    let teamIds = [];
+
+    // save tournament
     let tournamentInstance = new Tournament({
       _id: new mongoose.Types.ObjectId(),
-      groupNumber: 4
+      groupNumber: tournament.groupNumber
     });
-    tournamentId = tournamentInstance._id;
+
+    let tournamentId = tournamentInstance._id;
     tournamentInstance.save(err => {
       if (err) throw err;
     });
-    
+
     teams.map(team => {
-      let teamInstance = new Team({
+      teamInstance = new Team({
         _id: new mongoose.Types.ObjectId(),
-        name: team
+        name: team.name,
+        code: team.code,
+        logo: team.logo,
+        cover: team.cover || null
       });
       teamIds.push(teamInstance._id);
       teamInstance.save(err => {
         if (err) throw err;
       });
     });
+
+    let tournament_teamInstance = new Tournament_team({
+      _id: new mongoose.Types.ObjectId(),
+      tournament_id: tournamentId,
+      groupName: groupNames[i],
+      team_id: teamIds[i]
+    })
 
     for (let i = 0; i < tournament.groupNumber; i++) {
       groups.push({

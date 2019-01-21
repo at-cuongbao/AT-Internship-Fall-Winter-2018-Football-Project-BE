@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const userRouter = require('./user.route');
-const matchRouter = require('./schedule.route');
-const scheduleRouter = require('./schedule.route');
+const matchRouter = require('./match.route');
 const apiRouter = require('./api.route');
 const tournamentRouter = require('./tournament.route');
 
@@ -15,7 +14,6 @@ router.get('/', (req, res) => {
 
 router.use('/users', utilities.verifyToken, userRouter);
 router.use('/matchs', matchRouter);
-router.use('/schedules', scheduleRouter);
 router.use('/api', apiRouter);
 router.use('/tournaments', tournamentRouter);
 

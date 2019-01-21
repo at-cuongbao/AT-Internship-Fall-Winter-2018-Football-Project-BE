@@ -5,7 +5,7 @@ const matchSchema = mongoose.Schema({
     type: String,
     required: false
   },
-  knockout: {
+  round: {
     type: String,
     required: false
   },
