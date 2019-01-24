@@ -1,5 +1,4 @@
 const Schedule = require('../models/schedule.model');
-const utilities = require('../utilities/index');
 
 module.exports = {
   selectAll: (callback) => {
@@ -7,28 +6,31 @@ module.exports = {
   },
   createSchedule: (body, callback) => {
     let data = JSON.parse(body.data);
-    console.log(data);
-    let { tournamentId, schedules } = data;
+    let { tournamentId, tournamentTeamIds } = data;
 
-    schedules.map(pair => {
-      pair.map(item => {
-        let schedule = new Schedule({
-          tournament: tournamentId,
-          group: item[0],
-          firstTeam: item[1],
-          secondTeam: item[2],
-          matchDate: item[3]
-        });
-        schedule.save(err => {
-          if (err) throw err;
-        });
-      });
-    });
+    // schedules.map(pair => {
+    //   pair.map(item => {
+    //     let schedule = new Schedule({
+    //       tournament_id: tournamentId,
+    //       group_name: item[0],
+    //       first_teams_id: item[1],
+    //       second_team_id: item[2]
+    //       // matchDate: item[3]
+    //     });
+    //     schedule.save(err => {
+    //       if (err) throw err;
+    //     });
+    //   });
+    // });
 
     callback(null, data);
   },
   getSchedule: (id, callback) => {
-    Schedule.find({ _id: id }, callback);
+    Schedule.find({ _id: id }).exec(callback);
+  },
+  getScheduleByTournament: (id, callback) => {
+    Schedule.find({ tournament_id: id })
+      .populate('tournament_id').exec(callback);
   },
   updateSchedule: (id, body, callback) => {
     Schedule.findByIdAndUpdate(id, body, callback);

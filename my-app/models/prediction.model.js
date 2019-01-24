@@ -2,19 +2,23 @@ const mongoose = require('mongoose');
 
 const predictionSchema = mongoose.Schema({
   match_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Score'
+    type: mongoose.Schema.ObjectId,
+    ref: 'Match'
   },
   date: {
     type: Date
   },
   user_id: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  scorePrediction: {
+  score_prediction: {
     type: String,
     required: false
+  },
+  tournament_team_id: {
+    type: String,
+    require: false
   }
 }, {strict: false});
 

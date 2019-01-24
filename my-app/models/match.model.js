@@ -5,30 +5,21 @@ const matchSchema = mongoose.Schema({
     type: String,
     required: false
   },
-  knockout: {
+  round: {
     type: String,
     required: false
-  },
-  winner: {
-    type: String,
-    required: false
-  },
-  score_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Score'
   },
   tournament_id: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.ObjectId,
     ref: 'Tournament'
   },
-  prediction_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Prediction'
+  desc: {
+    type: String
   },
   start_at: {
     type: Date,
     required: false
   }
-}, {strict: false});
+}, { strict: false });
 
 module.exports = mongoose.model('Match', matchSchema);

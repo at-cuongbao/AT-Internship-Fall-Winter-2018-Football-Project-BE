@@ -17,7 +17,7 @@ const tournamentSchema = mongoose.Schema({
     type: Number,
     required: false
   },
-  des: {
+  desc: {
     type: String,
     required: false
   }

@@ -13,54 +13,50 @@ module.exports = {
     let { tournament, teams } = req.body;
 
     let groupNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-    let groups = [];
     let j = 0;
-
-    let teamIds = []
     let tournamentId;
-    let schedules = [];
-    
+    let tournamentTeamIds = [];
+
     let tournamentInstance = new Tournament({
-      _id: new mongoose.Types.ObjectId(),
-      groupNumber: 4
+      name: tournament.name,
+      // start_at: tournament.start_at,
+      // end_at: tournament.end_at,
+      group_number: tournament.group_number,
+      // desc: tournament.desc
     });
     tournamentId = tournamentInstance._id;
     tournamentInstance.save(err => {
       if (err) throw err;
     });
-    
+
     teams.map(team => {
       let teamInstance = new Team({
-        _id: new mongoose.Types.ObjectId(),
-        name: team
+        // name: team.name,
+        // code: team.code,
+        // cover: team.cover,
+        // logo: team.logo
       });
-      teamIds.push(teamInstance._id);
       teamInstance.save(err => {
         if (err) throw err;
       });
     });
 
     for (let i = 0; i < tournament.groupNumber; i++) {
-      groups.push({
-        groupName: groupNames[i],
-        teamIds: [
-          teamIds[j],
-          teamIds[j + 1],
-          teamIds[j + 2],
-          teamIds[j + 3]
-        ]
-      });
+      for (j; j < (4 * (i + 1)); j++) {
+        let tournamentTeamInstance = new TournamentTeam({
+          tournament_id: tournament.id,
+          group_name: groupNames[i],
+          team_id: teamIds[j]
+        });
+        tournamentTeamIds.push(tournamentInstance._id);
+        tournamentTeamInstance.save(err => {
+          if (err) throw err;
+        });
+      }
       j += 4;
     }
 
-    groups.map(group => {
-      utilities.generateMatchPair(group.groupName, group.teamIds, false)
-        .map(data => {
-          schedules.push(data);
-        });
-    });
-
-    callback(null, { tournamentId, schedules });
+    callback(null, { tournamentId, tournamentTeamIds });
   },
   getTournament: (id, callback) => {
     Tournament.find({ _id: id }, callback);

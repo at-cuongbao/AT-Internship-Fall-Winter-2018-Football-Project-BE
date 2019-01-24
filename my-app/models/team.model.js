@@ -8,6 +8,14 @@ const teamSchema = mongoose.Schema({
   code: {
     type: String,
     required: false
+  },
+  cover: {
+    type: String,
+    require: false
+  },
+  logo: {
+    type: String,
+    require: false
   }
 });
 
